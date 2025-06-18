@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
   const headersList = headers();
-  const acceptLang = headersList.get('accept-language') || '';
-  const preferredLocale = acceptLang.startsWith('ar') ? 'ar' : 'en';
+  const acceptLanguage = headersList.get('accept-language') || 'en';
+  const preferredLang = acceptLanguage.startsWith('ar') ? 'ar' : 'en';
 
-  redirect(`/${preferredLocale}`);
+  redirect(`/${preferredLang}`);
 }

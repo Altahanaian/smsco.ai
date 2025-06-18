@@ -3,8 +3,8 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'ar'],
     defaultLocale: 'en',
-    localeDetection: true,
+    localeDetection: false, // ✅ لاحظ هنا: false وليس true
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

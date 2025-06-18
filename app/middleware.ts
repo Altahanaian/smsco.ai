@@ -3,21 +3,20 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // إذا كان المستخدم يطلب صفحة تبدأ بـ /en أو /ar أو ملف (مثل .css أو .png)
+  // السماح بتمرير المسارات التي تحتوي على /en أو /ar أو ملفات مثل .css أو .js
   if (
     pathname.startsWith('/en') ||
     pathname.startsWith('/ar') ||
-    pathname.includes('.')
+    pathname.includes('.') ||
+    pathname === '/favicon.ico'
   ) {
     return NextResponse.next();
   }
 
-  // استخراج اللغة من الهيدر
+  // تحديد اللغة المفضلة
   const acceptLang = request.headers.get('accept-language') || '';
   const locale = acceptLang.startsWith('ar') ? 'ar' : 'en';
 
-  // إعادة التوجيه فقط إذا لم يكن المستخدم في المسار الصحيح
-  const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  // إعادة التوجيه إلى المسار المناسب إذا لم يكن يحتوي على اللغة
+  return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
 }

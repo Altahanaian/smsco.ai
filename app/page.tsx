@@ -1,8 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function Home() {
-  return (
-    <main style={{ padding: '3rem', textAlign: 'center', fontFamily: 'sans-serif' }}>
-      <h1>مرحبًا بكم في منصة SMSCO</h1>
-      <p>المنصة قيد التطوير حاليًا، ترقبوا الإطلاق قريبًا.</p>
-    </main>
-  );
+  redirect('/ar'); // يمكنك تغييره إلى '/en' إذا أردت أن تكون اللغة الافتراضية إنجليزية
 }

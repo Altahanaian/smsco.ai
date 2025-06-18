@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // السماح بالمسارات التي تبدأ بـ /ar أو /en أو ملفات النظام
+  // ✅ السماح بالمسارات التي تبدأ بلغة، أو مسارات النظام
   if (
-    pathname.startsWith('/ar') ||
     pathname.startsWith('/en') ||
+    pathname.startsWith('/ar') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.includes('.') ||
@@ -15,12 +15,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // تحديد اللغة المفضلة
+  // ✅ تحديد اللغة من الهيدر
   const acceptLang = request.headers.get('accept-language') || '';
   const locale = acceptLang.startsWith('ar') ? 'ar' : 'en';
 
-  // إعداد إعادة التوجيه
-  const url = request.nextUrl;
+  // ✅ إعادة التوجيه مرة واحدة فقط للمسار المطلوب
+  const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname}`;
+
   return NextResponse.redirect(url);
 }

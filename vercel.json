@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/ar"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/en",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/ar",
+      "destination": "/ar",
+      "permanent": true
+    }
+  ]
+}

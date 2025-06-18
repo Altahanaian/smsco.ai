@@ -2,12 +2,12 @@
 const nextConfig = {
   i18n: {
     locales: ['en', 'ar'],
-    defaultLocale: 'ar',
-    localeDetection: true,
+    defaultLocale: 'en',
+    localeDetection: false,
   },
   images: {
     formats: ['image/webp'],
-    minimumCacheTTL: 60 * 60 * 24, // 1 يوم
+    minimumCacheTTL: 60 * 60 * 24,
     deviceSizes: [320, 420, 768, 1024, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
